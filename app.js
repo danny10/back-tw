@@ -77,10 +77,18 @@ app.use('/listUser', userRoutes);
 app.use('/tweets', tweetsRoutes);
 
 //Connection to the bd
-mongoose.connect('mongodb://localhost:27017/twitter', function(err, res) {
-    if (err) throw err;
-    console.log('base de datos \x1b[32m%s\x1b[0m', 'online');
-});
+// mongoose.connect('mongodb://localhost:27017/twitter', function(err, res) {
+//     if (err) throw err;
+//     console.log('base de datos \x1b[32m%s\x1b[0m', 'online');
+// });
+
+
+mongoose.connection.openUri('mongodb+srv://admin:897454dfgdfjgf@pruebatw-dxklo.mongodb.net/twitter?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true },
+    (err, res) => {
+
+        if (err) throw err;
+        console.log('Basde de datos: \x1b[32m%s\x1b[0m', 'online');
+    });
 
 app.listen(app.get('port'), function() {
     console.log('Express server puerto ' + app.get('port') + ' \x1b[32m%s\x1b[0m', 'online');
